@@ -5,7 +5,7 @@ export async function onRequestPost(context) {
         if (payload.id === undefined || payload.rating === undefined) {
             return new Response("{}");
         }
-        const ps = context.env.PONGELO_DB.prepare('UPDATE players SET rating = ? WHERE id = ?;').bind(payload.rating, payload.id);
+        const ps = context.env.CHESSELO_DB.prepare('UPDATE players SET rating = ? WHERE id = ?;').bind(payload.rating, payload.id);
         let {success} = await ps.run();
         console.log(`[player/update] ${success}`)
     } catch (error) {
